@@ -1,5 +1,7 @@
 const Gene = require('./gene'),
+    Fitness = require('../fitness'),
     gene = new Gene(),
+    fitness = new Fitness(),
     config = require('../config.json');
 
 let pop = [],
@@ -10,4 +12,4 @@ while(i<config.population) {
     pop.push(gene.reset());
     i++;
 }
-console.log(gene.isEqual(pop[0], pop[1]));
+console.log(fitness.evaluate(pop[0]));
