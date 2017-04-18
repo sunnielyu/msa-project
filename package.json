@@ -1,0 +1,22 @@
+{
+  "name": "msa-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node ./loadGene.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunnielyu/msa-project.git"
+  },
+  "author": "Sunny Yu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sunnielyu/msa-project/issues"
+  },
+  "homepage": "https://github.com/sunnielyu/msa-project#readme"
+}
