@@ -1,15 +1,8 @@
-const Gene = require('./gene'),
-    Fitness = require('../fitness'),
-    gene = new Gene(),
-    fitness = new Fitness(),
-    config = require('../config.json');
+const Population = require('./population'),
+    population = new Population();
 
-let pop = [],
-    i = 0;
+let pop;
 
-gene.loadGenes();
-while(i<config.population) {
-    pop.push(gene.reset());
-    i++;
-}
-console.log(fitness.evaluate(pop[0]));
+pop = population.init();
+population.process(pop);
+console.log(pop);

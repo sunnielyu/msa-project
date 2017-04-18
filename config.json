@@ -1,10 +1,12 @@
 {
   "files": [
     "./test/short_test1.fasta",
-    "./test/short_test2.fasta"
+    "./test/short_test2.fasta",
+    "./test/short_test3.fasta"
   ],
   "initOffset": 3,
   "population": 5,
+  "convergence": 10,
   "match": 1,
   "mismatch": -1,
   "gap": -2
