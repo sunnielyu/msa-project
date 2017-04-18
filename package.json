@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "run.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "node ./loadGene.js"
+    "ga": "node ./genetic-algorithm/run.js",
+    "co": "node ./coevolve/run.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/sunnielyu/msa-project/issues"
   },
-  "homepage": "https://github.com/sunnielyu/msa-project#readme"
+  "homepage": "https://github.com/sunnielyu/msa-project#readme",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "lodash": "^4.17.4",
+    "q": "^1.5.0"
+  }
 }

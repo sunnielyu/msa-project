@@ -2,5 +2,6 @@
   "files": [
     "./test/HBA1_human.fasta",
     "./test/Hba1_rat.fasta"
-  ]
+  ],
+  "population": 5
 }
