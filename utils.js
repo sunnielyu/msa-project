@@ -8,6 +8,17 @@ function debug(x) {
     });
 }
 
+function print(x) {
+    console.log(`Generation #${x.iter}:`);
+    console.log(`Best fitness score: ${x.max}`);
+    console.log(`Best alignment: `);
+    _.forEach(x.pop[0].gene, gene => {
+        console.log(gene.name);
+        console.log(gene.seq);
+    });
+}
+
 module.exports = {
-    debug: debug
+    debug: debug,
+    print: pring
 };

@@ -10,7 +10,7 @@ let i=0;
 
 gen = population.init();
 //console.log(gen);
-newGen = population.process(gen);
+/*newGen = population.process(gen);
 
 while(true) {
     newGen = population.process(newGen);
@@ -20,6 +20,6 @@ while(true) {
         break;
     }
     i++;
-}
+}*/
 
 
