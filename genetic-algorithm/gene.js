@@ -1,4 +1,4 @@
-var config = require('../config.json'),
+const config = require('../config.json'),
     _ = require('lodash'),
     assert = require('assert'),
     fs = require('fs');
@@ -32,7 +32,7 @@ class Gene {
         aln.gene = [];
 
         _.forEach(this.seqs, item => {
-            let rand = (Math.random() * this.initOffset + 1),
+            let rand = Math.floor(Math.random() * (this.initOffset + 1)),
                 obj = _.clone(item);
             obj.seq = ('-'.repeat(rand)) + item.seq;
             aln.gene.push(obj);
@@ -54,15 +54,6 @@ class Gene {
         });
         return isEqual;
     }
-
-    crossover(x, y) {
-
-    }
-
-    gapInsertion(x, y) {
-
-    }
-
 }
 
 module.exports = Gene;

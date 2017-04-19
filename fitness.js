@@ -1,4 +1,4 @@
-let _ = require('lodash'),
+const _ = require('lodash'),
     assert = require('assert'),
     config = require('./config.json');
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "ga": "node ./genetic-algorithm/run.js",
+    "ga": "node --max_old_space_size=4096 ./genetic-algorithm/run.js",
     "co": "node ./coevolve/run.js"
   },
   "repository": {
