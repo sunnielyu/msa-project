@@ -21,7 +21,6 @@ class Breed {
 }
 
 function crossover(x, y) {
-
     let z = x.seq.length < y.seq.length ? x.seq.length : y.seq.length;
     let point = Math.floor(Math.random() * z),
         i = 0,
@@ -40,7 +39,6 @@ function crossover(x, y) {
             j++;
         }
     }
-    console.log(a.join('') + y.seq.slice(b.length));
     return {seq: a.join('') + y.seq.slice(b.length)};
 }
 
