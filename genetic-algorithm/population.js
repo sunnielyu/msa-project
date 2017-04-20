@@ -1,7 +1,7 @@
 const _ = require('lodash'),
     config = require('../config.json'),
     Gene = require('./gene'),
-    Fitness = require('../fitness'),
+    Fitness = require('./fitness'),
     Breed = require('./breed');
 
 class Population {

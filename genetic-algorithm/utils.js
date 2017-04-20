@@ -20,5 +20,5 @@ function print(x) {
 
 module.exports = {
     debug: debug,
-    print: pring
+    print: print
 };

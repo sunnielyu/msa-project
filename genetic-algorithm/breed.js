@@ -1,8 +1,8 @@
 const _ = require('lodash'),
     assert = require('assert'),
     config = require('../config.json'),
-    {debug} = require('../utils'),
-    Fitness = require('../fitness'),
+    {debug} = require('./utils'),
+    Fitness = require('./fitness'),
     fitness = new Fitness();
 
 class Breed {

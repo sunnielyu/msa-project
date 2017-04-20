@@ -1,5 +1,5 @@
 const _ = require('lodash'),
-    {debug, print} = require('../utils'),
+    {debug, print} = require('./utils'),
     Population = require('./population'),
     population = new Population();
 
@@ -12,7 +12,7 @@ gen = population.init();
 //console.log(gen);
 newGen = population.process(gen);
 
-while(true) {
+/*while(true) {
     newGen = population.process(newGen);
     //debug(newGen);
     if(newGen.done) {
@@ -20,6 +20,6 @@ while(true) {
         break;
     }
     i++;
-}
+}*/
 
 
