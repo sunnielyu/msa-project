@@ -10,7 +10,7 @@ class Fitness {
 
     evaluate(genome) {
         if(genome.score) {
-            return genome.score;
+            return 0;
         }
 
         let score = 0;
@@ -35,7 +35,8 @@ class Fitness {
                 }
             }
         }
-        return genome.score = score;
+        genome.score = score;
+        return 1;
     }
 }
 

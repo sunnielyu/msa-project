@@ -11,6 +11,11 @@ class Population {
         this.fitness = new Fitness();
         this.convergence = config.convergence || 100;
         this.maxGenerations = config.maxGenerations || 10000;
+        this.fe = 0;
+    }
+
+    getFitnessEval() {
+        return this.fe;
     }
 
     init() {
@@ -22,7 +27,7 @@ class Population {
         _.forEach(loadedSeqs, item => {
             gen.pop.push(this.subpopulation.init(item));
         });
-        this.fitness.evaluate(gen);
+        this.fe += this.fitness.evaluate(gen);
         gen.convergence = 0;
         gen.iter = 0;
         return gen;
@@ -46,7 +51,7 @@ class Population {
         _.forEach(gen.pop, subGen => {
             newGen.pop.push(this.subpopulation.process(subGen));
         });
-        this.fitness.evaluate(newGen);
+        this.fe += this.fitness.evaluate(newGen);
 
         newGen.convergence = newGen.max === gen.max ? gen.convergence + 1 : 0;
 

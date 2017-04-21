@@ -8,7 +8,8 @@ class Fitness {
         let match = config.match || 1,
             mismatch = config.mismatch || -1,
             gap = config.gap || -2,
-            sizePenalty = config.sizePenalty || 10;
+            sizePenalty = config.sizePenalty || 10,
+            count = 0;
 
             function getScore(genome) {
                 let score = 0;
@@ -33,6 +34,7 @@ class Fitness {
                         }
                     }
                 }
+                count += 1;
                 return score;
             }
 
@@ -71,7 +73,7 @@ class Fitness {
             }
         });
         gen.max = maxScore;
-        return gen;
+        return count;
     }
 
 }

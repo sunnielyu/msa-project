@@ -4,9 +4,8 @@ const _ = require('lodash'),
     population = new Population();
 
 let gen,
-    newGen;
-
-let i=0;
+    newGen,
+    i=0;
 
 gen = population.init();
 newGen = population.process(gen);
@@ -16,6 +15,7 @@ while(true) {
     //debug(newGen);
     if(newGen.done) {
         print(newGen);
+        console.log(`fitness evaluations: ${population.getFitnessEval()}`);
         break;
     }
     i++;

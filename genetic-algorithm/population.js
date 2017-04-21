@@ -12,6 +12,11 @@ class Population {
         this.convergence = config.convergence || 100;
         this.size = config.population || 100;
         this.maxGenerations = config.maxGenerations || 10000;
+        this.fe = 0;
+    }
+
+    getFitnessEval() {
+        return this.fe;
     }
 
     init() {
@@ -41,7 +46,7 @@ class Population {
 
         newGen.iter = gen.iter + 1;
         _.forEach(gen.pop, gene => {
-            this.fitness.evaluate(gene);
+            this.fe += this.fitness.evaluate(gene);
             if(!max || gene.score > max) {
                 max = gene.score;
             }
@@ -74,9 +79,6 @@ class Population {
                 }
             }
         });
-        if(_.isEmpty(weight)) {
-            console.log(newGen);
-        }
         newGen.weight = weight;
         while(newGen.pop.length < this.size) {
             this.breed.process(newGen);

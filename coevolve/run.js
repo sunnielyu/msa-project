@@ -9,14 +9,14 @@ let gen,
 
 gen = population.init();
 //debug(gen);
-newGen = population.process(gen, );
+newGen = population.process(gen);
 
 while(true) {
-    newGen = population.process(newGen, );
+    newGen = population.process(newGen);
     //debug(newGen);
     if(newGen.done) {
         print(newGen);
-        console.log(`Fitness evaluations: `);
+        console.log(`Fitness evaluations: ${population.getFitnessEval()}`);
         break;
     }
     i++;
