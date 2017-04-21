@@ -7,33 +7,34 @@ class Fitness {
     evaluate(gen) {
         let match = config.match || 1,
             mismatch = config.mismatch || -1,
-            gap = config.gap || -2;
+            gap = config.gap || -2,
+            sizePenalty = config.sizePenalty || 10;
 
             function getScore(genome) {
-            let score = 0;
+                let score = 0;
 
-            for(let n=0; n<genome.len; n++) {
-                for(let i=0; i<genome.gene.length; i++) {
-                    for(let j=i+1; j<genome.gene.length; j++) {
-                        let a = genome.gene[i].seq[n] || '-',
-                            b = genome.gene[j].seq[n] || '-';
+                for(let n=0; n<genome.len; n++) {
+                    for(let i=0; i<genome.gene.length; i++) {
+                        for(let j=i+1; j<genome.gene.length; j++) {
+                            let a = genome.gene[i].seq[n] || '-',
+                                b = genome.gene[j].seq[n] || '-';
 
-                        if(a === b) {
-                            if(a !== '-') {
-                                score += match;
-                            }
-                        } else if(a !== b) {
-                            if(a === '-' || b === '-') {
-                                score += gap;
-                            } else {
-                                score += mismatch;
+                            if(a === b) {
+                                if(a !== '-') {
+                                    score += match;
+                                }
+                            } else if(a !== b) {
+                                if(a === '-' || b === '-') {
+                                    score += gap;
+                                } else {
+                                    score += mismatch;
+                                }
                             }
                         }
                     }
                 }
+                return score;
             }
-            return score;
-        }
 
         let topAln = [],
             maxScore = Number.NEGATIVE_INFINITY,
@@ -54,7 +55,13 @@ class Fitness {
                     }
                 });
                 obj.len = max;
-                gene.score = getScore(obj);
+                if((gene.seq.length - pop.orig)/pop.orig < 0.1) {
+                    gene.score = getScore(obj);
+                } else if((gene.seq.length - pop.orig)/pop.orig < 1) {
+                    gene.score = getScore(obj) - (sizePenalty * ((gene.seq.length - pop.orig)/pop.orig));
+                } else {
+                    gene.score = getScore(obj) - 100;
+                }
             });
             pop.pop.sort((a, b) => {
                 return b.score - a.score;

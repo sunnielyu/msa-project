@@ -22,6 +22,7 @@ class Subpopulation {
             i++;
         }
         gen.name = item.name;
+        gen.orig = item.seq.length;
         return gen;
     }
 
@@ -30,6 +31,7 @@ class Subpopulation {
             newGen = {},
             weight = [];
         newGen.name = gen.name;
+        newGen.orig = gen.orig;
 
         newGen.pop = subGen.slice(0, this.size/2);
         _.forEach(newGen.pop, (gene, index) => {

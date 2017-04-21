@@ -14,7 +14,10 @@ function print(x) {
     console.log(`Generation #${x.iter}:`);
     console.log(`Best fitness score: ${x.max}`);
     console.log(`Best alignment: `);
-    console.log(x.final);
+    _.forEach(x.final, item => {
+        console.log(item.name);
+        console.log(item.seq);
+    });
 }
 
 module.exports = {

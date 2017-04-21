@@ -1,5 +1,4 @@
 const _ = require('lodash'),
-    assert = require('assert'),
     config = require('../config.json'),
     {debug} = require('./utils'),
     Fitness = require('./fitness'),
@@ -9,16 +8,15 @@ class Breed {
     constructor() {}
 
     process(gen) {
-        //debug(gen);
-        //assert.ok(!_.isEmpty(gen.weight), 'Breed.process: Invalid `weight` array.' + gen.iter);
-
         let x = gen.weight[Math.floor(Math.random() * gen.weight.length)],
             y = gen.weight[Math.floor(Math.random() * gen.weight.length)];
 
-        if(Math.random() > 0.5) {
+        if(Math.random() > 0.66) {
             gen.pop.push(crossover(gen.pop[x], gen.pop[y]));
-        } else {
+        } else if(Math.random() > 0.33) {
             gen.pop.push(gapInsertion(gen.pop[x]));
+        } else {
+            gen.pop.push(gapShuffle(gen.pop[x]));
         }
     }
 }
@@ -80,6 +78,41 @@ function gapInsertion(x) {
         if(newSeq.length > max) {
             max = newSeq.length;
         }
+    });
+    aln.len = max;
+    return aln;
+}
+
+function gapShuffle(x) {
+    let aln = {},
+        max = 0;
+    aln.gene = [];
+    _.forEach(x.gene, gene => {
+        let location = Math.floor(Math.random() * gene.seq.length),
+            direction = location % 2 === 0,
+            index = gene.seq.indexOf('-', location),
+            newSeq;
+
+        if(index < 0) {
+            newSeq = gene.seq;
+        } else if(direction) {
+            newSeq = gene.seq.slice(0, index) + gene.seq.slice(index);
+            index = gene.seq.indexOf('-', location);
+            if(index >= 0) {
+                newSeq = gene.seq.slice(0, index) + '-' + gene.seq.slice(index);
+            }
+        } else {
+            newSeq = gene.seq.slice(0, index) + gene.seq.slice(index);
+            index = gene.seq.lastIndexOf('-', location);
+            if(index >= 0) {
+                newSeq = gene.seq.slice(0, index) + '-' + gene.seq.slice(index);
+            }
+        }
+        if(newSeq.length > max) {
+            max = newSeq.length;
+        }
+
+        aln.gene.push({name: gene.name, seq: gene.seq});
     });
     aln.len = max;
     return aln;

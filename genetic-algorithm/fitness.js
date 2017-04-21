@@ -1,5 +1,4 @@
 const _ = require('lodash'),
-    assert = require('assert'),
     config = require('../config.json');
 
 class Fitness {
@@ -10,8 +9,6 @@ class Fitness {
     }
 
     evaluate(genome) {
-        console.log('fitness: ', genome);
-        assert.ok(!_.isEmpty(genome), 'Fitness: Invalid `genome` parameter.');
         if(genome.score) {
             return genome.score;
         }

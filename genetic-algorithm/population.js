@@ -11,6 +11,7 @@ class Population {
         this.breed = new Breed();
         this.convergence = config.convergence || 100;
         this.size = config.population || 100;
+        this.maxGenerations = config.maxGenerations || 10000;
     }
 
     init() {
@@ -29,7 +30,7 @@ class Population {
     }
 
     process(gen) {
-        if(gen.convergence > this.convergence) {
+        if(gen.convergence > this.convergence || gen.iter > this.maxGenerations) {
             gen.done = true;
             return gen;
         }

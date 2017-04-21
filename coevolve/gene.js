@@ -1,6 +1,5 @@
 const config = require('../config.json'),
     _ = require('lodash'),
-    assert = require('assert'),
     fs = require('fs');
 
 class Gene {
@@ -24,7 +23,6 @@ class Gene {
     }
 
     reset(seq) {
-        assert.ok(!_.isEmpty(seq), 'reset: `seq` cannot be empty.');
         let rand = Math.floor(Math.random() * (this.initOffset + 1));
         return ('-'.repeat(rand)) + seq;
     }

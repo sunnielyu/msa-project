@@ -9,10 +9,9 @@ let gen,
 let i=0;
 
 gen = population.init();
-//console.log(gen);
 newGen = population.process(gen);
 
-/*while(true) {
+while(true) {
     newGen = population.process(newGen);
     //debug(newGen);
     if(newGen.done) {
@@ -20,6 +19,6 @@ newGen = population.process(gen);
         break;
     }
     i++;
-}*/
+}
 
 
