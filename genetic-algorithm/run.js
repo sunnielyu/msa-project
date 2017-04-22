@@ -1,7 +1,8 @@
 const _ = require('lodash'),
     {debug, print} = require('./utils'),
     Population = require('./population'),
-    population = new Population();
+    population = new Population(),
+    matrix = require('../pam250');
 
 let gen,
     newGen,
@@ -19,6 +20,6 @@ while(true) {
         break;
     }
     i++;
-}
+}//*/
 
 

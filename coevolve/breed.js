@@ -12,9 +12,9 @@ class Breed {
         let x = gen.weight[Math.floor(Math.random() * gen.weight.length)],
             y = gen.weight[Math.floor(Math.random() * gen.weight.length)];
 
-        if(Math.random() > 0.66) {
+        if(Math.random() > 0.6) {
             gen.pop.push(crossover(gen.pop[x], gen.pop[y]));
-        } else if(Math.random() > 0.33) {
+        } else if(Math.random() > 0.4) {
             gen.pop.push(gapInsertion(gen.pop[x]));
         } else {
             gen.pop.push(gapShuffle(gen.pop[x]));

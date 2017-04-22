@@ -1,13 +1,12 @@
 const _ = require('lodash'),
-    config = require('../config.json');
+    config = require('../config.json'),
+    matrix = require('../pam250');
 
 class Fitness {
     constructor() {}
 
     evaluate(gen) {
-        let match = config.match || 1,
-            mismatch = config.mismatch || -1,
-            gap = config.gap || -2,
+        let gap = config.gap || -4,
             sizePenalty = config.sizePenalty || 10,
             count = 0;
 
@@ -20,16 +19,10 @@ class Fitness {
                             let a = genome.gene[i].seq[n] || '-',
                                 b = genome.gene[j].seq[n] || '-';
 
-                            if(a === b) {
-                                if(a !== '-') {
-                                    score += match;
-                                }
+                            if(a !== '-' && b !== '-') {
+                                score += matrix(a, b);
                             } else if(a !== b) {
-                                if(a === '-' || b === '-') {
-                                    score += gap;
-                                } else {
-                                    score += mismatch;
-                                }
+                                score += gap;
                             }
                         }
                     }
@@ -39,7 +32,6 @@ class Fitness {
             }
 
         let topAln = [],
-            maxScore = Number.NEGATIVE_INFINITY,
             subGen = gen.pop;
 
         _.forEach(subGen, pop => {
@@ -58,21 +50,24 @@ class Fitness {
                 });
                 obj.len = max;
                 if((gene.seq.length - pop.orig)/pop.orig < 0.1) {
-                    gene.score = getScore(obj);
-                } else if((gene.seq.length - pop.orig)/pop.orig < 1) {
-                    gene.score = getScore(obj) - (sizePenalty * ((gene.seq.length - pop.orig)/pop.orig));
+                    gene.score = Math.floor(getScore(obj));
+                } else if((gene.seq.length - pop.orig)/pop.orig < 0.5) {
+                    gene.score = Math.floor(getScore(obj) - (sizePenalty * ((gene.seq.length - pop.orig)/pop.orig)));
                 } else {
-                    gene.score = getScore(obj) - 100;
+                    gene.score = Math.floor(getScore(obj) - 10000);
+                }
+                //console.log(gen);
+
+                if(gene.score > gen.best.score) {
+                    gen.best.score = gene.score;
+                    gen.best.aln = obj.gene;
                 }
             });
             pop.pop.sort((a, b) => {
                 return b.score - a.score;
             });
-            if(pop.pop[0].score > maxScore) {
-                maxScore = pop.pop[0].score;
-            }
+            gen.max = gen.best.score;
         });
-        gen.max = maxScore;
         return count;
     }
 

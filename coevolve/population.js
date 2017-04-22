@@ -27,6 +27,7 @@ class Population {
         _.forEach(loadedSeqs, item => {
             gen.pop.push(this.subpopulation.init(item));
         });
+        gen.best = {aln: [], score: Number.NEGATIVE_INFINITY};
         this.fe += this.fitness.evaluate(gen);
         gen.convergence = 0;
         gen.iter = 0;
@@ -35,17 +36,12 @@ class Population {
 
     process(gen) {
         if(gen.convergence > this.convergence || gen.iter > this.maxGenerations) {
-            let final = [];
             gen.done = true;
-            _.forEach(gen.pop, subGen => {
-                subGen.pop[0].name = subGen.name;
-                final.push(subGen.pop[0]);
-            });
-            gen.final = final;
             return gen;
         }
         let newGen = {};
         newGen.pop = [];
+        newGen.best = gen.best;
 
         newGen.iter = gen.iter + 1;
         _.forEach(gen.pop, subGen => {
