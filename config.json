@@ -1,12 +1,9 @@
 {
   "files": [
-    "./data/trial2/1abo_A.fasta",
-    "./data/trial2/1bb9_.fasta",
-    "./data/trial2/1hjd_A.fasta",
-    "./data/trial2/1ihv_A.fasta",
-    "./data/trial2/1pht_.fasta",
-    "./data/trial2/1ue9_A.fasta",
-    "./data/trial2/1ycs_B.fasta"
+    "./data/trial3/1ad3_A.fasta",
+    "./data/trial3/1eyy_A.fasta",
+    "./data/trial3/1o20_A.fasta",
+    "./data/trial3/1uzb_A.fasta"
   ],
   "initOffset": 10,
   "population": 100,
